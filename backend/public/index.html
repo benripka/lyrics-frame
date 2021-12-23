@@ -9,7 +9,7 @@
     <script type="text/javascript" src="./popup.js"></script>
     <script>
         setInterval(() => {
-            axios.get("http://13.114.161.124/3000/lyrics").then(res => {
+            axios.get("http://13.114.161.124:3000/lyrics").then(res => {
                 document.getElementById("artist").textContent = res.data["artist"]
                 document.getElementById("song").textContent = res.data["song"]
                 document.getElementById("lyrics").textContent = res.data["lyrics"]
