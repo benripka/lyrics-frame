@@ -1,6 +1,10 @@
 import SpotifyClient from "./spotifyClient.js";
 import LyricsClient from "./lyricsCrawler.js";
 import express from "express"
+import path from "path";
+import { URL } from 'url'; // in Browser, the URL in native accessible on window
+// Will contain trailing slash
+const __dirname = new URL('.', import.meta.url).pathname;
 
 const snooze = ms => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -10,6 +14,8 @@ const port = 3000
 let lyrics = ""
 let song = ""
 let artist = ""
+
+app.use(express.static(path.join(__dirname, "/public")))
 
 app.get('/lyrics', (req, res) => {
     res.send({
