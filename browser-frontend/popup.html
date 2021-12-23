@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="button.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+    <script src=""></script>
+    <script type="text/javascript" src="./popup.js"></script>
+    <script>
+        setInterval(() => {
+            axios.get("http://localhost:3000/lyrics").then(res => {
+                document.getElementById("artist").textContent = res.data["artist"]
+                document.getElementById("song").textContent = res.data["song"]
+                document.getElementById("lyrics").textContent = res.data["lyrics"]
+            }).catch(e => {
+                console.log(e)
+            })
+            console.log("Grabbing lyrics")
+        }, 300)
+    </script>
+</head>
+<body class="bg-dark">
+<h1></h1>
+<div class="container bg-light p-4 text-secondary framed">
+    <div class="d-flex">
+        <div class="col">
+            <p id="song" class="text-success display-2 m-3"></p>
+            <p class="text-secondary m-4 display-5">By <span class="h4" id="artist"></span></p>
+            <div class="d-flex">
+                <p class="h5 m-2 mt-4 col-6" id="lyrics"></p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

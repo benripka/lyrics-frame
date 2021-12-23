@@ -1,0 +1,13 @@
+{
+  "name": "node-playground",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cheerio": "^1.0.0-rc.10",
+    "express": "^4.17.2",
+    "qs": "^6.10.2"
+  }
+}
