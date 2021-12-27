@@ -23,10 +23,21 @@ const sessionManager = new SessionManager()
 const spotifyClient = new SpotifyClient()
 const lyricsClient = new LyricsClient()
 
+function generateRandomId(length) {
+    let result           = '';
+    let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let charactersLength = characters.length;
+    for ( let i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() *
+            charactersLength));
+    }
+    return result;
+}
+
 app.use(express.static(path.join(__dirname, "/public")))
 
 app.get('/login', (req, res) => {
-    let state = "state"
+    let state = req.query["sessionId"]
     let scope = 'user-read-currently-playing'
     res.redirect('https://accounts.spotify.com/authorize?' +
         qs.stringify({
@@ -54,15 +65,16 @@ app.get("/code", (req, res) => {
             "Content-Type": "multipart/form-data",
             'Authorization': 'Basic ' + (new Buffer(CLIENT_ID + ':' + CLIENT_SECRET).toString('base64'))
         }
-    }).then((res) => {
-        let accessToken = res.data["access_token"]
-        let refreshToken = res.data["refresh_token"]
+    }).then((auth_res) => {
+        let accessToken = auth_res.data["access_token"]
+        let refreshToken = auth_res.data["refresh_token"]
         sessionManager.newSession(sessionId)
         sessionManager.setSessionToken(sessionId, accessToken)
+        res.send({success: true, sessionId: sessionId})
     }).catch(e => {
         console.log(e)
+        res.send({success: false})
     })
-    res.send(`It worked: ${code}`)
 })
 
 app.get('/lyrics', async (req, res) => {
