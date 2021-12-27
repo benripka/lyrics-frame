@@ -4,27 +4,26 @@ import qs from "qs"
 class SpotifyClient {
 
     constructor() {
-        this.token = "BQBAMvVJbWd8lWsumFtXvF4QRDp9IwRBSULibvfM_NKjheCf5s0VZ9f-M-_Q9sZG-LTGEEzSwzjM_mI2MjIhELRMpGan3aCVblsQj0BWZ1UTDRTQNOrgDupEDUjOyEbcr0SiPF0V7gbC8ryDd5AugHmVvFk2JiF3bhUhy8u5"
     }
 
-    async getCurrentlyPlayingSong() {
+    async getCurrentlyPlayingSong(token) {
         try {
-            return this.getEndpoint("/me/player/currently-playing")
+            return this.getEndpoint("/me/player/currently-playing", token)
         } catch (e) {
             throw new Error(`Failed to get the currently playing song from Spotify`)
         }
     }
 
-    async getEndpoint(endpoint) {
+    async getEndpoint(endpoint, token) {
         let config = {
-            headers: this.getHeaders(),
+            headers: this.getHeaders(token),
         };
         return axios.get(`https://api.spotify.com/v1${endpoint}`, config)
     }
 
-    getHeaders() {
+    getHeaders(token) {
         return {
-            'Authorization': 'Bearer ' + this.token
+            'Authorization': 'Bearer ' + token
         }
     }
 }
