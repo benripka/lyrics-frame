@@ -1,5 +1,6 @@
 import SpotifyClient from "./spotifyClient.js";
 import LyricsClient from "./lyricsCrawler.js";
+import FormData from "form-data"
 import express from "express"
 import path from "path";
 import {URL} from 'url';
@@ -42,7 +43,7 @@ app.get("/code", (req, res) => {
     let code = req.query["code"]
     let form = new FormData()
     form.append("code", code)
-    form.append("redirect_uri", `http://13.114.161.124:3000/?sessionId=${sessionId}`)
+    form.append("redirect_uri", `http://13.114.161.124:3000/`)
     form.append("grant_type", 'authorization_code')
 
     axios({
