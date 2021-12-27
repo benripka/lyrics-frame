@@ -41,17 +41,19 @@ app.get('/login', (req, res) => {
 app.get("/code", (req, res) => {
     let sessionId = req.query["state"]
     let code = req.query["code"]
-    let form = new FormData()
-    form.append("code", code)
-    form.append("redirect_uri", `http://13.114.161.124:3000/`)
-    form.append("grant_type", 'authorization_code')
+
+    let body = qs.stringify({
+        code: code,
+        redirect_url: `http://13.114.161.124:3000/`,
+        grant_type: 'authorization_code'
+    })
 
     axios({
         method: "post",
         url: 'https://accounts.spotify.com/api/token',
-        data: form,
+        data: body,
         headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "application/x-www-form-urlencoded",
             'Authorization': 'Basic ' + (new Buffer(CLIENT_ID + ':' + CLIENT_SECRET).toString('base64'))
         }
     }).then((auth_res) => {
