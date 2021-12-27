@@ -2,11 +2,15 @@ import SpotifyClient from "./spotifyClient.js";
 import LyricsClient from "./lyricsCrawler.js";
 import express from "express"
 import path from "path";
-import { URL } from 'url'; // in Browser, the URL in native accessible on window
+import {URL} from 'url';
+import qs from "qs"; // in Browser, the URL in native accessible on window
 // Will contain trailing slash
 const __dirname = new URL('.', import.meta.url).pathname;
 
 const snooze = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+const CLIENT_ID = "c910df0d95ee4391959317ecdcceeb78"
+const REDIRECT_URI = "http://13.114.161.124:3000/"
 
 const app = express()
 const port = 3000
@@ -16,6 +20,21 @@ let song = ""
 let artist = ""
 
 app.use(express.static(path.join(__dirname, "/public")))
+
+app.get('/login', (req, res) => {
+
+    let state = "state"
+    let scope = 'user-read-currently-playing'
+
+    res.redirect('https://accounts.spotify.com/authorize?' +
+        qs.stringify({
+            response_type: 'code',
+            client_id: CLIENT_ID,
+            scope: scope,
+            redirect_uri: REDIRECT_URI,
+            state: state
+        }))
+})
 
 app.get('/lyrics', (req, res) => {
     res.send({
