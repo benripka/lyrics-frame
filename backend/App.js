@@ -44,7 +44,7 @@ app.get("/code", (req, res) => {
 
     let body = qs.stringify({
         code: code,
-        redirect_url: `http://13.114.161.124:3000/`,
+        redirect_uri: `http://13.114.161.124:3000/`,
         grant_type: 'authorization_code'
     })
 
