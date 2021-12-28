@@ -68,13 +68,17 @@ app.get("/code", (req, res) => {
 })
 
 app.get('/lyrics', async (req, res) => {
-    let sessionId = req.query["sessionId"]
-    let token = sessionManager.getSessionToken(sessionId)
-    getLyrics(token).then((info) => {
-        res.status(200).send(info)
-    }).catch(e => {
-        res.status(404).send( e)
-    })
+    try {
+        let sessionId = req.query["sessionId"]
+        let token = sessionManager.getSessionToken(sessionId)
+        getLyrics(token).then((info) => {
+            res.status(200).send(info)
+        }).catch(e => {
+            res.status(404).send( e)
+        })
+    } catch (e) {
+        res.status(400).send(e)
+    }
 })
 
 const getLyrics = async (token) => {
