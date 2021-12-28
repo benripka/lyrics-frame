@@ -60,6 +60,7 @@ app.get("/code", (req, res) => {
         let refreshToken = auth_res.data["refresh_token"]
         sessionManager.newSession(sessionId)
         sessionManager.setSessionToken(sessionId, accessToken)
+        console.log(`SESSION IDDDDDDDDDDDDDDDDDDDDDDDDDDD: ${sessionId}`)
         res.send("Success")
     }).catch(e => {
         console.log(e)
