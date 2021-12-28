@@ -5,10 +5,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
-    <script async>
+    <script>
         let sessionId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
         console.log("SESSIONID" + sessionId)
-        await axios.get(`http://13.114.161.124:3000/login?sessionId=${sessionId}`)
+        axios.get(`http://13.114.161.124:3000/login?sessionId=${sessionId}`).then(() => console.log("Logged in")).catch(e => {console.log(e)})
         setInterval(() => {
             console.log("SESSIONID" + sessionId)
             axios.get(`http://13.114.161.124:3000/lyrics?sessionId=${sessionId}`).then(res => {
