@@ -8,9 +8,10 @@
     <script src=""></script>
     <script type="text/javascript" src="./popup.js"></script>
     <script>
-        axios.get(`http://13.114.161.124:3000/login?sessionId=ben`).then(res => {
+        let sessionId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        axios.get(`http://13.114.161.124:3000/login?sessionId=${sessionId}`).then(res => {
             setInterval(() => {
-                axios.get("http://13.114.161.124:3000/lyrics?sessionId=ben").then(res => {
+                axios.get(`http://13.114.161.124:3000/lyrics?sessionId=${sessionId}`).then(res => {
                     document.getElementById("artist").textContent = res.data["artist"]
                     document.getElementById("song").textContent = res.data["song"]
                     document.getElementById("lyrics").textContent = res.data["lyrics"]
