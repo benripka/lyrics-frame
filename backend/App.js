@@ -44,7 +44,7 @@ app.get("/code", (req, res) => {
 
     let body = qs.stringify({
         code: code,
-        redirect_uri: `http://13.114.161.124:3000/`,
+        redirect_uri: REDIRECT_URI,
         grant_type: 'authorization_code'
     })
 
@@ -61,8 +61,10 @@ app.get("/code", (req, res) => {
         let refreshToken = auth_res.data["refresh_token"]
         sessionManager.newSession(sessionId)
         sessionManager.setSessionToken(sessionId, accessToken)
+        res.send("Success")
     }).catch(e => {
         console.log(e)
+        res.send("Failed")
     })
 })
 
