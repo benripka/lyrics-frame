@@ -8,18 +8,19 @@
     <script>
         let sessionId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
         console.log("SESSIONID" + sessionId)
-        axios.get(`http://13.114.161.124:3000/login?sessionId=${sessionId}`).then(() => console.log("Logged in")).catch(e => {console.log(e)})
-        setInterval(() => {
-            console.log("SESSIONID" + sessionId)
-            axios.get(`http://13.114.161.124:3000/lyrics?sessionId=${sessionId}`).then(res => {
-                document.getElementById("artist").textContent = res.data["artist"]
-                document.getElementById("song").textContent = res.data["song"]
-                document.getElementById("lyrics").textContent = res.data["lyrics"]
-            }).catch(e => {
-                console.log(e)
-            })
-            console.log("Grabbing lyrics")
-        }, 4000)
+        axios.get(`http://13.114.161.124:3000/login?sessionId=${sessionId}`).then(() => {
+            setInterval(() => {
+                console.log("SESSIONID" + sessionId)
+                axios.get(`http://13.114.161.124:3000/lyrics?sessionId=${sessionId}`).then(res => {
+                    document.getElementById("artist").textContent = res.data["artist"]
+                    document.getElementById("song").textContent = res.data["song"]
+                    document.getElementById("lyrics").textContent = res.data["lyrics"]
+                }).catch(e => {
+                    console.log(e)
+                })
+                console.log("Grabbing lyrics")
+            }, 4000)
+        }).catch(e => {console.log(e)})
     </script>
 </head>
 <body class="bg-dark">
