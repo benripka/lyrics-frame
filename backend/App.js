@@ -1,6 +1,5 @@
 import SpotifyClient from "./spotifyClient.js";
 import LyricsClient from "./lyricsCrawler.js";
-import FormData from "form-data"
 import express from "express"
 import path from "path";
 import {URL} from 'url';
@@ -71,8 +70,11 @@ app.get("/code", (req, res) => {
 app.get('/lyrics', async (req, res) => {
     let sessionId = req.query["sessionId"] || null
     let token = sessionManager.getSessionToken(sessionId)
-    let info = await getLyrics(token)
-    res.send(info)
+    getLyrics(token).then((info) => {
+        res.status(200).send(info)
+    }).catch(e => {
+        res.status(404).send( e)
+    })
 })
 
 const getLyrics = async (token) => {
