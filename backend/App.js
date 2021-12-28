@@ -60,8 +60,7 @@ app.get("/code", (req, res) => {
         let refreshToken = auth_res.data["refresh_token"]
         sessionManager.newSession(sessionId)
         sessionManager.setSessionToken(sessionId, accessToken)
-        console.log(`SESSION IDDDDDDDDDDDDDDDDDDDDDDDDDDD: ${sessionId}`)
-        res.send("Success")
+        res.send(sessionId)
     }).catch(e => {
         console.log(e)
         res.send("Failed")
@@ -89,7 +88,6 @@ const getLyrics = async (token) => {
             artist: artist,
             lyrics: lyrics
         }
-
     } catch (e) {
         console.log(e)
         await snooze(1000)
@@ -97,5 +95,5 @@ const getLyrics = async (token) => {
 }
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://13.114.161.124:3000:${port}`)
+    console.log(`Example app listening at http://13.114.161.124:${port}`)
 })
