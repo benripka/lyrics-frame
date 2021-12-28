@@ -60,7 +60,7 @@ app.get("/code", (req, res) => {
         let refreshToken = auth_res.data["refresh_token"]
         sessionManager.newSession(sessionId)
         sessionManager.setSessionToken(sessionId, accessToken)
-        res.send("Success")
+        res.send("Successful Login! Return to the other tab!")
     }).catch(e => {
         console.log(e)
         res.send("Failed")
