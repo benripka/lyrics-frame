@@ -13,7 +13,7 @@ export class SessionManager {
 
     constructor() {
         this.sessions = []
-        setInterval(this.cleanup, 60 * 60 * 1000)
+        // setInterval(this.cleanup, 60 * 60 * 1000)
     }
 
     cleanup() {
@@ -36,7 +36,7 @@ export class SessionManager {
                 return session.token
             }
         })
-        throw new Error(`Could no fetch spotify code for session`)
+        throw new Error(`Could no fetch spotify code for id ${id}`)
     }
 
     setSessionToken(id, token) {
@@ -45,5 +45,6 @@ export class SessionManager {
                 session.token = token
             }
         })
+        throw Error(`Failed to set the session token: ${id}, ${token}`)
     }
 }

@@ -60,7 +60,7 @@ app.get("/code", (req, res) => {
         let refreshToken = auth_res.data["refresh_token"]
         sessionManager.newSession(sessionId)
         sessionManager.setSessionToken(sessionId, accessToken)
-        res.send(sessionId)
+        res.send("Success")
     }).catch(e => {
         console.log(e)
         res.send("Failed")
@@ -68,7 +68,7 @@ app.get("/code", (req, res) => {
 })
 
 app.get('/lyrics', async (req, res) => {
-    let sessionId = req.query["sessionId"] || null
+    let sessionId = req.query["sessionId"]
     let token = sessionManager.getSessionToken(sessionId)
     getLyrics(token).then((info) => {
         res.status(200).send(info)
