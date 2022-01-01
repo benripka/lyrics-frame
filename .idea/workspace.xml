@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b5e5d391-b120-4520-a896-8a83f05a37b0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/public/button.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Crawlers.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Crawlers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/SessionManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/SessionManager.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lyricsCrawler.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lyricsCrawler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser-frontend/popup.html" beforeDir="false" afterPath="$PROJECT_DIR$/browser-frontend/popup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lyric-frame-embedded/platformio.ini" beforeDir="false" afterPath="$PROJECT_DIR$/lyric-frame-embedded/platformio.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lyric-frame-embedded/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/lyric-frame-embedded/src/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,12 +35,13 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="14.18.1" />
     <property name="javascript.nodejs.core.library.typings.version" value="14.18.1" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/browser-frontend/static" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
@@ -54,7 +60,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Node.js.App.js">
+  <component name="RunManager" selected="Node.js.test.js">
     <configuration name="App.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/backend/App.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
@@ -64,8 +70,12 @@
     <configuration name="spotifyClient.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/backend/spotifyClient.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
+    <configuration name="test.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/backend/test.js" working-dir="$PROJECT_DIR$/backend">
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.test.js" />
         <item itemvalue="Node.js.App.js" />
         <item itemvalue="Node.js.scratch_2.js" />
         <item itemvalue="Node.js.spotifyClient.js" />
@@ -83,7 +93,11 @@
       <workItem from="1640129278858" duration="21212000" />
       <workItem from="1640241130449" duration="6713000" />
       <workItem from="1640288279876" duration="31000" />
-      <workItem from="1640288319673" duration="2736000" />
+      <workItem from="1640288319673" duration="3686000" />
+      <workItem from="1640637320210" duration="20684000" />
+      <workItem from="1640673863817" duration="666000" />
+      <workItem from="1640926183837" duration="3200000" />
+      <workItem from="1641068408057" duration="297000" />
     </task>
     <servers />
   </component>
@@ -108,11 +122,6 @@
           <url>file://$APPLICATION_CONFIG_DIR$/scratches/scratch_2.js</url>
           <line>1215</line>
           <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/backend/App.js</url>
-          <line>35</line>
-          <option name="timeStamp" value="45" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -1,10 +1,11 @@
-import {AZLyricsCrawler, LyricsDotComCrawler} from "./Crawlers.js";
+import {AZLyricsCrawler, GeniusCrawler, LyricsDotComCrawler} from "./Crawlers.js";
 
 class LyricsClient {
 
     CRAWLERS = [
+        new GeniusCrawler(),
         new LyricsDotComCrawler(),
-        new AZLyricsCrawler()
+        new AZLyricsCrawler(),
     ]
 
     async getLyrics(song, artist) {

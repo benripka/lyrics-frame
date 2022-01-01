@@ -9,7 +9,7 @@ class Session {
 
 export class SessionManager {
 
-    static SESSION_TIMOUT = 60 * 60 * 1000
+    static SESSION_TIMEOUT = 60 * 60 * 1000
 
     constructor() {
         this.sessions = []
@@ -19,7 +19,7 @@ export class SessionManager {
     cleanup() {
         this.sessions.forEach((session, index) => {
             // If it's been more than the session timeout since last access
-            if (Date.now() - session.lastAccess > SessionManager.SESSION_TIMOUT) {
+            if (Date.now() - session.lastAccess > SessionManager.SESSION_TIMEOUT) {
                 this.sessions.splice(index, 1)
             }
         })

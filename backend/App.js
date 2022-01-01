@@ -81,6 +81,15 @@ app.get('/lyrics', async (req, res) => {
     }
 })
 
+app.get("/lyrics/test", (req, res) => {
+    try {
+        let lyrics = '{"song":"Secrets (Cellar Door)","artist":"Radical Face","lyrics":"Drawn into the frost on the glass was a map pointing to my secret hiding place\nIt lead you to the tree with the split in its trunk on the way into your familys yard\nIn that tree you saw I brought the dog back to life\n\nI watch you from the branches while you stared from the ground with a look I couldnt understand\nSo I said \"leave me alone, if your only words are ugly ones\"\nAnd you just smiled and said \"come and show me how its done\"\n\nYou dug up your old bird, and you held her to your chest as I breathed life back into her lungs\nAnd she blinked and flapped her wings, she sang a familiar song\nBefore she took to the air and cut a path into the woods\n\nAnd then I cried, because all my life I have known something was off\nBut you just shrugged and said: \"it aint just you\"\nSlipping on the pavement where we ran from the ghosts that you saw behind the cellar door\nThats the way that you showed me that I wasnt quite alone\nThat youd also touched the dead before"}'
+        res.status(200).send(lyrics)
+    } catch (e) {
+        res.status(400).send("Failed")
+    }
+})
+
 const getLyrics = async (token) => {
     try {
         const res = await spotifyClient.getCurrentlyPlayingSong(token)

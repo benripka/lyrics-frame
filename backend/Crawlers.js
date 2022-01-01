@@ -24,13 +24,12 @@ export class LyricsCrawler {
             let url = this.buildUrl(song, artist)
             console.log(`Hitting ${url}`)
             let res = await axios.get(url)
-            return this.extractLyrics(res.data, song)
+                return this.extractLyrics(res.data, song)
         } catch (e) {
             throw new Error(`Failed to get the lyrics for: ${song} by ${artist}`)
         }
     }
 }
-
 
 export class AZLyricsCrawler extends LyricsCrawler {
 
@@ -61,6 +60,22 @@ export class LyricsDotComCrawler extends LyricsCrawler {
 
     getPath(song, artist) {
         return `/${artist.split(" ").join("-").toLowerCase()}/${song.split(" ").join("-").toLowerCase()}-lyrics/`
+    }
+}
+
+export class GeniusCrawler extends LyricsCrawler {
+    constructor() {
+        super("https://genius.com");
+    }
+
+    getPath(song, artist) {
+        let path = `/${artist.split(" ").join("-").toLowerCase()}/${song.split(" ").join("-").toLowerCase()}-lyrics/`
+        return path.charAt(0).toUpperCase() + path.slice(1)
+    }
+
+    extractLyrics(html, song) {
+        const $ = cheerio.load(html)
+        return $("data-lyrics-container[value='true']" ).text()
     }
 }
 
