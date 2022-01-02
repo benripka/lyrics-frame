@@ -4,12 +4,6 @@
     <list default="true" id="b5e5d391-b120-4520-a896-8a83f05a37b0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Crawlers.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Crawlers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/SessionManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/SessionManager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/lyricsCrawler.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lyricsCrawler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser-frontend/popup.html" beforeDir="false" afterPath="$PROJECT_DIR$/browser-frontend/popup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lyric-frame-embedded/platformio.ini" beforeDir="false" afterPath="$PROJECT_DIR$/lyric-frame-embedded/platformio.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lyric-frame-embedded/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/lyric-frame-embedded/src/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +91,7 @@
       <workItem from="1640637320210" duration="20684000" />
       <workItem from="1640673863817" duration="666000" />
       <workItem from="1640926183837" duration="3200000" />
-      <workItem from="1641068408057" duration="297000" />
+      <workItem from="1641068408057" duration="1837000" />
     </task>
     <servers />
   </component>

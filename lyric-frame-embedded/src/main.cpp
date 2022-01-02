@@ -21,8 +21,6 @@
 // e.g. for Wemos D1 mini:
 // GxEPD2_BW<GxEPD2_154_D67, GxEPD2_154_D67::HEIGHT> display(GxEPD2_154_D67(/*CS=D8*/ SS, /*DC=D3*/ 0, /*RST=D4*/ 2, /*BUSY=D2*/ 4)); // GDEH0154D67
 
-const char HelloWorld[] = "Mutha fuckin lyrics\nMutha fuckin lyrics\nMutha fuckin lyrics\nMutha fuckin lyrics\nMutha fuckin lyrics\nMutha fuckin lyrics\nMutha fuckin lyrics\nMutha fuckin lyrics\nMutha fuckin lyrics\nMutha fuckin lyrics\nMutha fuckin lyrics\nMutha fuckin lyrics\nMutha fuckin lyrics\nMutha fuckin lyrics\n";
-
 void helloWorld(const char message[])
 {
   display.setRotation(0);
@@ -40,7 +38,7 @@ void helloWorld(const char message[])
   {
     display.fillScreen(GxEPD_WHITE);
     display.setCursor(x, y);
-    display.print(HelloWorld);
+    display.print(message);
   } while (display.nextPage());
 }
 
@@ -53,35 +51,6 @@ IPAddress server(74, 125, 115, 105); // Google
 // Initialize the client library
 WiFiClient client;
 
-// void setup() {
-//   Serial.begin(9600);
-//   Serial.println("Attempting to connect to WPA network...");
-//   Serial.print("SSID: ");
-//   Serial.println(ssid);
-
-//   // display.init();
-//   // helloWorld(HelloWorld);
-//   // display.hibernate();
-
-//   status = WiFi.begin(ssid, pass);
-//   if ( status != WL_CONNECTED) {
-//     Serial.println("Couldn't get a wifi connection");
-//     // don't do anything else:
-//     while(true);
-//   }
-//   else {
-//     Serial.println("Connected to wifi");
-//     Serial.println("\nStarting connection...");
-//     // if you get a connection, report back via serial:
-//     if (client.connect(server, 80)) {
-//       Serial.println("connected");
-//       // Make a HTTP request:
-//       client.println("GET /search?q=arduino HTTP/1.0");
-//       // String response = client.readString();
-//       // helloWorld(response.c_str());
-//     }
-//   }
-// }
 
 const char host[] = "www.google.com";
 uint16_t port = 80;
@@ -94,6 +63,8 @@ void setup()
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, pass);
 
+  display.init();
+
   Serial.print("Connecting");
   while (WiFi.status() != WL_CONNECTED)
   {
@@ -101,7 +72,8 @@ void setup()
     Serial.print(".");
   }
   Serial.println();
-
+  Serial.print("MAC Address: ");
+  Serial.println(WiFi.macAddress());
   Serial.print("Connected, IP address: ");
   Serial.println(WiFi.localIP());
 }
@@ -113,7 +85,7 @@ void loop()
     WiFiClient client;
     HTTPClient http;
 
-    String serverPath = "http://13.114.161.124:3000";
+    String serverPath = "http://13.114.161.124:3000/lyrics/test";
 
     // Your Domain name with URL path or IP address with path
     http.begin(client, serverPath.c_str());
@@ -127,6 +99,7 @@ void loop()
       Serial.println(httpResponseCode);
       String payload = http.getString();
       Serial.println(payload);
+      helloWorld(payload.c_str());
     }
     else
     {
@@ -140,5 +113,5 @@ void loop()
   {
     Serial.println("WiFi Disconnected");
   }
-  delay(5000);
+  delay(10000);
 };

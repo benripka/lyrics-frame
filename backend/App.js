@@ -22,6 +22,10 @@ const sessionManager = new SessionManager()
 const spotifyClient = new SpotifyClient()
 const lyricsClient = new LyricsClient()
 
+const tokens = {
+    "D8:F1:5B:13:13:37": "BQBInyAvEr0mRLvw5zbG4qs5bLwJQs1YErqCfLdRhGyt68vxoKcBTT74PebfXD3C9QVXM7gJC5j9KFQ8upcu4_XtT5kd3HQckwjNvamkhxSvWnA5piiBwnw9vk_U_XS9WzC8xBAKu_SpSULbFaoS3p4jjHxRvIe2uintBsnm"
+}
+
 app.use(express.static(path.join(__dirname, "/public")))
 
 app.get('/login', (req, res) => {
@@ -87,6 +91,18 @@ app.get("/lyrics/test", (req, res) => {
         res.status(200).send(lyrics)
     } catch (e) {
         res.status(400).send("Failed")
+    }
+})
+
+app.get("/lyrics/frame", async (req, res) => {
+    try {
+        let macAddress = req.query["mac"]
+        let token = tokens[macAddress]
+        let lyrics = await getLyrics(token)
+        res.status(200).send(lyrics)
+    } catch (e) {
+        console.log(e)
+        res.status(400).send(e)
     }
 })
 
