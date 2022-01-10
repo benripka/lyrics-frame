@@ -23,7 +23,7 @@ const spotifyClient = new SpotifyClient()
 const lyricsClient = new LyricsClient()
 
 const tokens = {
-    "D8:F1:5B:13:13:37": "BQDSTIP6aJbYXiukJq9raWU1dpRtjRnYn1Pgu-5oKfG767jLBXyrs1VHqeqdl7WtHdyj-IPbgaFFTNphpZ83TAhatYvBdmcmgZcAnmeMPLGyWQN58Lvnck7IKZVNQLGDfhl5cqvpFZgSfsWdAHfmfRNbNSIdSKQCQCW-615e"
+    "D8:F1:5B:13:13:37": "BQCMCeCqJVMbkEHZxnW6_y9lxl8K-QrlzQkbHLn-sdV1vGdut4i0NT8e4SIVArjRoHJJ-pwFHPfRjursmjt9OLFA4yrNm6yZalQdNSIxmfG2rtVElE2B7CSyOfowfAmoNNqbccEF7_R0fhyM--A2dKgLorAfS_QWZTUlSLUQ"
 }
 
 app.use(express.static(path.join(__dirname, "/public")))

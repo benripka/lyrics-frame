@@ -22,14 +22,18 @@
 // e.g. for Wemos D1 mini:
 // GxEPD2_BW<GxEPD2_154_D67, GxEPD2_154_D67::HEIGHT> display(GxEPD2_154_D67(/*CS=D8*/ SS, /*DC=D3*/ 0, /*RST=D4*/ 2, /*BUSY=D2*/ 4)); // GDEH0154D67
 
-void helloWorld(const char message[])
+
+
+void helloWorld(String song, String artist, String lyrics)
 {
+  String message = song + " By " + artist + "\n\n" + lyrics;
+
   display.setRotation(0);
   display.setFont(&FreeMonoBold9pt7b);
   display.setTextColor(GxEPD_BLACK);
   int16_t tbx, tby;
   uint16_t tbw, tbh;
-  display.getTextBounds(message, 0, 0, &tbx, &tby, &tbw, &tbh);
+  display.getTextBounds(message.c_str(), 0, 0, &tbx, &tby, &tbw, &tbh);
   // center the bounding box by transposition of the origin:
   uint16_t x = ((display.width() - tbw) / 2) - tbx;
   uint16_t y = ((display.height() - tbh) / 2) - tby;
@@ -47,18 +51,14 @@ char ssid[] = "SM-A326W7504"; //  your network SSID (name)
 char pass[] = "joiscool";     // your network password
 
 int status = WL_IDLE_STATUS;
-IPAddress server(74, 125, 115, 105); // Google
 
 // Initialize the client library
 WiFiClient client;
 
-DynamicJsonDocument doc(2048);
-
-deserializeJson()
-
-
-const char host[] = "www.google.com";
 uint16_t port = 80;
+
+String lastSong = "";
+DynamicJsonDocument doc(2048);
 
 void setup()
 {
@@ -101,11 +101,31 @@ void loop()
 
     if (httpResponseCode > 0)
     {
-      Serial.print("HTTP Response code: ");
+      Serial.print(F("HTTP Response code: "));
       Serial.println(httpResponseCode);
       String payload = http.getString();
-      Serial.println(payload);
-      helloWorld(payload.c_str());
+
+      DeserializationError error = deserializeJson(doc, payload);
+
+      // Test if parsing succeeds.
+      if (error) {
+        Serial.print(F("deserializeJson() failed: "));
+        Serial.println(error.f_str());
+        delay(2000);
+        return;
+      }
+      String song = doc["song"];
+      String artist = doc["artist"];
+      String lyrics = doc["lyrics"];
+      Serial.println(song);
+      Serial.println(artist);
+      Serial.println(lyrics);
+      doc.clear();
+
+      if (song != lastSong) {
+        lastSong = song;
+        helloWorld(song, artist, lyrics);
+      }
     }
     else
     {
