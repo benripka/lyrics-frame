@@ -12,6 +12,7 @@
 #include <SPI.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
+#include <ArduinoJson.h>
 
 // select the display class and display driver class in the following file (new style):
 #include "GxEPD2_display_selection_new_style.h"
@@ -51,6 +52,10 @@ IPAddress server(74, 125, 115, 105); // Google
 // Initialize the client library
 WiFiClient client;
 
+DynamicJsonDocument doc(2048);
+
+deserializeJson()
+
 
 const char host[] = "www.google.com";
 uint16_t port = 80;
@@ -85,7 +90,8 @@ void loop()
     WiFiClient client;
     HTTPClient http;
 
-    String serverPath = "http://13.114.161.124:3000/lyrics/test";
+    String macAddress = WiFi.macAddress();
+    String serverPath = "http://13.114.161.124:3000/lyrics/frame?mac=" + macAddress;
 
     // Your Domain name with URL path or IP address with path
     http.begin(client, serverPath.c_str());
